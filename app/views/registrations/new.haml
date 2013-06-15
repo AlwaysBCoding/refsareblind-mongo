@@ -1,0 +1,18 @@
+%h1 SIGNUP ROUTE
+
+- if @errors.present?
+	.errors
+		- @errors.each do |error|
+			%p= error
+
+= form_tag "/signup" do
+	%fieldset
+		= text_field :user, :firstname, placeholder: "First Name"
+		= text_field :user, :lastname, placeholder: "Last Name"
+	%fieldset
+		= text_field :user, :email, placeholder: "Email"
+	%fieldset
+		= password_field :user, :password, placeholder: "Password"
+		= password_field :user, :password_confirmation, placeholder: "Password Confirmation"
+	%fieldset.actions
+		= submit_tag "Create Account"

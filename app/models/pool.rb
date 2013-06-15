@@ -25,6 +25,7 @@ class Pool
 # SPECIAL FEATURES
 
 # SCOPES
+	scope :open_to_public, -> { where(open_to_public: true) }
 
 # DELEGATIONS
 	def users
@@ -42,6 +43,7 @@ class Pool
 	end
 
 	def to_param
+		self.slug
 	end
 
 	def destroy

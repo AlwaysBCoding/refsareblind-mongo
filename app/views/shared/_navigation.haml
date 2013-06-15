@@ -1,0 +1,12 @@
+.navigation
+	- if @current_user.present?
+		= link_to "Account", user_account_url
+		= link_to "Log Out", logout_url
+	- else
+		= link_to "Login", login_url
+		= link_to "Register", signup_url
+	- if @pool.present?
+		= link_to @pool.name, pool_url(@pool.slug)
+		= link_to "Picks", new_pick_url(@pool.slug)
+	- if @current_entry.present?
+		= link_to "My Entry", edit_entry_url(@pool.slug)
