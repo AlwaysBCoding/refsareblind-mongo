@@ -23,6 +23,7 @@ class PoolType
 
 # CONFIG METHODS
 	def to_s
+		"#{name.titleize}"
 	end
 
 	def to_param

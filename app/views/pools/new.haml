@@ -1,5 +1,10 @@
 %h1 CREATE A POOL
 
+- if @errors.present?
+	.errors
+		- @errors.each do |error|
+			%li= error
+
 = form_tag "/pools" do
 	%fieldset
 		= text_field :pool, :name, placeholder: "Pool Name"

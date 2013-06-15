@@ -14,11 +14,11 @@ class Pool
 # ASSOCIATIONS
 	belongs_to :pool_type
 	has_many :entries
-	# belongs_to :user
+	belongs_to :owner, class_name: "User", inverse_of: "owned_pools"
 
 # VALIDATIONS
 	validates :name, presence: true, uniqueness: true
-	validates :slug, presence: true, uniqueness: true
+	validates :slug, presence: true, uniqueness: { message: "All pool names must be unique, it looks like that has already been taken" }
 	validates :access_code, presence: true, unless: :open_to_public?
 	validates :pool_type_id, presence: true
 
@@ -33,7 +33,7 @@ class Pool
 	end
 
 # CALLBACKS
-	before_validation on: :create do
+	before_validation on: [:create, :update] do
 		self.slug = self.name.parameterize if self.name.present?
 	end
 

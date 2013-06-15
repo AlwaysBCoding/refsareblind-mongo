@@ -16,7 +16,7 @@ Refsareblind::Application.routes.draw do
 # POOLS
 	resources :pools, only: [:new, :create, :index, :show] do
 		get "payment", on: :member
-		post "payment", on: :member
+		post "post_payment", on: :member
 		get "admin", on: :member
 		get "join", on: :member
 	end

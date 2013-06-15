@@ -4,7 +4,7 @@
 	%p= @current_user
 	%p= @current_user.email
 
-.pools
-	- @current_user.entries.each do |entry|
-		.entry
-			= link_to "#{entry.name} - #{entry.pool.name}", pool_url(entry.pool.slug)
+/ .pools
+/ 	- @current_user.entries.each do |entry|
+/ 		.entry
+/ 			= link_to "#{entry.name} - #{entry.pool.name}", pool_url(entry.pool.slug)

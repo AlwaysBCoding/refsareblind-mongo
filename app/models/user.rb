@@ -13,6 +13,7 @@ class User
 
 # ASSOCIATIONS
 	has_many :entries
+	has_many :owned_pools, class_name: "Pool", inverse_of: "owner"
 
 # VALIDATIONS
 	validates :email, presence: true, uniqueness: true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, message: "Email address is not formatted correctly" }
