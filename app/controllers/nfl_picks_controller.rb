@@ -1,3 +1,3 @@
-class NflPicksController < ApplicationController
+class NflPicksController < AuthenticatedController
 
 end

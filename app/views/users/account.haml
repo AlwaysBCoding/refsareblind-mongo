@@ -1,10 +1,10 @@
 %h1 USER ACCOUNT PAGE
 
 .account-details
-	%p= @user
-	%p= @user.email
+	%p= @current_user
+	%p= @current_user.email
 
 .pools
-	- @user.entries.each do |entry|
+	- @current_user.entries.each do |entry|
 		.entry
 			= link_to "#{entry.name} - #{entry.pool.name}", pool_url(entry.pool.slug)

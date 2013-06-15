@@ -1,8 +1,6 @@
-class UsersController < ApplicationController
-	# before_action :require_user, only: [:account]
+class UsersController < AuthenticatedController
 
 	def account
-		@user = current_user
 	end
 
 end

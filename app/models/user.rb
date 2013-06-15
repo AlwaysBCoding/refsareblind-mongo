@@ -28,6 +28,9 @@ class User
 	end
 
 # CALLBACKS
+	before_validation on: :create do
+		self.email = self.email.downcase
+	end
 
 # CONFIG METHODS
 	def to_s
