@@ -10,6 +10,9 @@ class NflTeam
   field :abbr, type: String
 
 # ASSOCIATIONS
+	has_many :nfl_picks
+	has_many :home_games, class_name: "NflMatchup", inverse_of: "home_team"
+	has_many :away_games, class_name: "NflMatchup", inverse_of: "away_team"
 
 # VALIDATIONS
 	validates :city, presence: true
@@ -23,6 +26,9 @@ class NflTeam
 # SCOPES
 
 # DELEGATIONS
+	def games_played
+		self.home_games + self.away_games
+	end
 
 # CALLBACKS
 

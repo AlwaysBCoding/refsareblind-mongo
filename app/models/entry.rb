@@ -11,6 +11,7 @@ class Entry
 # ASSOCIATIONS
 	belongs_to :user
 	belongs_to :pool
+	has_many :nfl_picks
 
 # VALIDATIONS
 	validates :user_id, presence: { message: "Entry must belong to a user" }
