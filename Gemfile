@@ -43,6 +43,7 @@ gem 'rails', '4.0.0.rc2'
 	group :development, :test do
 		gem 'rspec-rails'
 		gem 'guard-rspec'
+		gem 'mongoid-rspec'
 		gem 'growl'
 	end
 

@@ -14,14 +14,17 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include Mongoid::Matchers
 
    config.before(:suite) do
      DatabaseCleaner.strategy = :truncation
      DatabaseCleaner.clean_with(:truncation)
+     DatabaseCleaner.orm = "mongoid"
    end
 
    config.before(:each) do
      DatabaseCleaner.start
+     Mongoid::IdentityMap.clear
    end
 
    config.after(:each) do
