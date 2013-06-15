@@ -1,0 +1,3 @@
+class NflPicksController < ApplicationController
+
+end

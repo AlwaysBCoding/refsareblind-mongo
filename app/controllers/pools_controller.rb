@@ -1,5 +1,5 @@
 class PoolsController < ApplicationController
-	before_action :require_user, only: [:new, :create, :show]
+	# before_action :require_user, only: [:new, :create, :show]
 
 	def new
 	end

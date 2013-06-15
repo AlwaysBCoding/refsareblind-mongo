@@ -24,12 +24,12 @@ Refsareblind::Application.routes.draw do
 # ENTRIES
 	resources :entries, only: [:create, :edit] do
 		post "approve", on: :member
-		post "remove-approval", on: :member
+		post "remove_approval", on: :member
 	end
 
-# # PICKS
-#   get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_pick
-#   post "/pools/:slug/picks/update_unlocked_survival_pick" => "nfl_picks#update_unlocked_survival_pick", as: :update_unlocked_survival_pick
+# # # PICKS
+# #   get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_pick
+# #   post "/pools/:slug/picks/update_unlocked_survival_pick" => "nfl_picks#update_unlocked_survival_pick", as: :update_unlocked_survival_pick
 
 # DEBUG ROUTES - TURN OFF ON PRODUCTION
 	get "/view_sessions" => "dev#view_sessions"
