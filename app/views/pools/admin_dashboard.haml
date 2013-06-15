@@ -1,0 +1,28 @@
+%h1 Admin Dashboard
+
+%table
+	%thead
+		%tr
+			%th Entry
+			%th Role
+			%th Approved
+			%th Actions
+	%tbody
+		- @pool.entries.each do |entry|
+			%tr.entry-row
+				%td= entry
+				%td= entry.role.titleize
+				- if entry.approved?
+					%td.approval-mark.approved.centered ✔
+					%td.centered= button_tag "Remove Approval", class: "remove-approval", data: {entry_id: entry.id.to_s}
+				- else
+					%td.approval-mark.unapproved.centered ✘
+					%td.centered= button_tag "Approve Entry", class: "approve-entry", data: {entry_id: entry.id.to_s}
+
+:sass
+	.centered
+		text-align: center
+	.approved
+		color: green
+	.unapproved
+		color: red

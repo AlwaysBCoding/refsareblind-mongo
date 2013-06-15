@@ -9,11 +9,10 @@ class Pool
   field :open_to_public, type: Boolean, default: false
   field :payment_settled, type: Boolean, default: false
   field :access_code, type: String
-  field :configurations, type: Array, default: []
+  field :configurations, type: Hash, default: {}
 
 # ASSOCIATIONS
 	has_many :entries
-	belongs_to :owner, class_name: "User", inverse_of: "owned_pools"
 
 # VALIDATIONS
 	validates :name, presence: true, uniqueness: true

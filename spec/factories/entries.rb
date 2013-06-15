@@ -1,4 +1,4 @@
-FactoryGirl.define :entries do
+FactoryGirl.define do
 
 	factory :entry do
 	end

@@ -1,12 +1,11 @@
 class PoolsController < AuthenticatedController
-	before_action :set_pool, except: [:index, :new]
+	before_action :set_pool, except: [:index, :new, :create]
 
 	def new
 	end
 
 	def create
 		pool = Pool.new pool_params
-		pool.owner = @current_user.id
 		if pool.save
 			Entry.create! user_id: @current_user.id, pool_id: pool.id, role: "owner", approved: true
 			flash[:notice] = "Your pool has successfully been created"
@@ -72,6 +71,9 @@ class PoolsController < AuthenticatedController
 			flash[:error] = "The access code that you entered is invalid"
 			render :join
 		end
+	end
+
+	def admin_dashboard
 	end
 
 private

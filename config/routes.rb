@@ -18,7 +18,7 @@ Refsareblind::Application.routes.draw do
 		member do
 			get "payment"
 			post "payment" => "pools#post_payment"
-			get "admin"
+			get "admin" => "pools#admin_dashboard"
 			get "join"
 			post "join" => "pools#post_join"
 		end
@@ -26,8 +26,8 @@ Refsareblind::Application.routes.draw do
 
 # ENTRIES
 	resources :entries, only: [:create, :edit] do
-		post "approve", on: :member
-		post "remove_approval", on: :member
+		post "approve", on: :collection
+		post "remove_approval", on: :collection
 	end
 
 # # # PICKS

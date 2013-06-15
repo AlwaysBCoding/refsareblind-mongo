@@ -13,7 +13,6 @@ class User
 
 # ASSOCIATIONS
 	has_many :entries
-	has_many :owned_pools, class_name: "Pool", inverse_of: "owner"
 
 # VALIDATIONS
 	validates :email, presence: true, uniqueness: true, format: { with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/, message: "Email address is not formatted correctly" }
@@ -48,6 +47,14 @@ class User
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def authorized_for_action_in_pool?(action, pool)
+		user_entry = self.entries.where(pool: pool).first
+		case action
+		when "approve-entry"
+			return true if ["owner", "admin"].include?(user_entry.role)
+		end
+
+	end
 
 # PRIVATE METHODS
 private
