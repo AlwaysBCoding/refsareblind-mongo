@@ -1,5 +1,5 @@
 class PoolsController < AuthenticatedController
-	before_action :set_pool, only: [:show, :payment, :post_payment]
+	before_action :set_pool, except: [:index, :new]
 
 	def new
 	end
@@ -59,6 +59,21 @@ class PoolsController < AuthenticatedController
 	def show
 	end
 
+	def join
+	end
+
+	def post_join
+		# check_user_eligible_to_join()
+		if params[:access_code] == @pool.access_code
+			Entry.create(user_id: @current_user.id, pool_id: @pool.id)
+			flash[:notice] = "You have successfully joined the pool #{@pool}"
+			redirect_to pool_url(@pool.slug)
+		else
+			flash[:error] = "The access code that you entered is invalid"
+			render :join
+		end
+	end
+
 private
 	def pool_params
 		params.require(:pool).permit(:name, :slug, :access_code, :owner)
@@ -71,5 +86,8 @@ private
 			redirect_to user_account_url
 		end
 	end
+
+	# def check_user_eligible_to_join
+	# end
 
 end

@@ -1,0 +1,9 @@
+%h1= "Join Pool - #{@pool}"
+
+= form_tag join_pool_url(@pool.slug) do
+	= hidden_field_tag :pool_id, @pool.id
+	%fieldset
+		= label_tag :access_code, "Access Code"
+		= password_field_tag :access_code
+	%fieldset.actions
+		= submit_tag "Submit"

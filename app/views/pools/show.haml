@@ -1,1 +1,6 @@
 %h1= @pool
+
+.entries
+- @pool.entries.each do |entry|
+	.entry
+		%p= "#{entry}"

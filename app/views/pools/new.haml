@@ -5,10 +5,14 @@
 		- @errors.each do |error|
 			%li= error
 
-= form_tag "/pools" do
+= form_tag pools_url do
 	%fieldset
 		= label_tag "Choose a name for your pool (Note: all names must be unique across the application)"
 		= text_field :pool, :name, placeholder: "Pool Name"
+	%fieldset
+		= label_tag "Pool Permalink - The url where you will access your pool"
+		%span.pool-permalink.permalink-root= "http://www.refsareblind.com"
+		%span.pool-permalink.permalink-path= "/refs-are-blind"
 	%fieldset
 		= label_tag "Choose from one of our premade classic pools or create your own fully custom pool"
 		= render "pools/new_pool_options"
