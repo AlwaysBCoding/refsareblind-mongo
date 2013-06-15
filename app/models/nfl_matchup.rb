@@ -3,7 +3,7 @@ class NflMatchup
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :week, type: Integer
+  field :interval, type: Integer
   field :point_spread, type: Float
   field :home_team_score, type: Integer
   field :away_team_score, type: Integer
@@ -35,6 +35,11 @@ class NflMatchup
 
 	def to_param
 	end
+
+	### Potential Ideas
+	###################
+	# def interval_name
+	# end
 
 # CLASS METHODS
 

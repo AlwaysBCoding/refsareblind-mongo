@@ -9,7 +9,6 @@
 	%fieldset
 		= text_field :pool, :name, placeholder: "Pool Name"
 	%fieldset
-		= select_tag :pool_type_id, options_for_select(PoolType.all.map { |pt| [pt.name, pt.id] }), name: "pool[pool_type_id]"
 	%fieldset
 		= label_tag "This is the access code that members will need to join your pool"
 		= text_field :pool, :access_code, placeholder: "Access Code"

@@ -61,7 +61,7 @@ class PoolsController < AuthenticatedController
 
 private
 	def pool_params
-		params.require(:pool).permit(:name, :pool_type_id, :slug, :access_code, :owner)
+		params.require(:pool).permit(:name, :slug, :access_code, :owner)
 	end
 
 	def set_pool
