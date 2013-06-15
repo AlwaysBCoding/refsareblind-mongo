@@ -1,0 +1,25 @@
+-
+  display_name: "NFL Survival"
+  description: "The classic NFL Survival Pool. Each player chooses one team every week to win, no spreads. Sounds easy right? The kicker is that you can't pick the same team twice throughout the season. If you lose once, you're eliminated."
+  configurations:
+    -
+      sport: "NFL"
+      elimination: true
+      picks_per_week: 1
+      spreads: false
+      same_team_limit: 1
+      losses_to_eliminate: 1
+      number_of_intervals: 17
+      aggregate_winner: true
+-
+  display_name: "NFL Supercontest"
+  description: "Modeleed after the Supercontest that the Las Vegas Hiltion sportsbook runs every year. You pick five games against the spread every week. Wins count for 1 point, ties count for .5, the best way to find out who could make the most money if we were all living in Las Vegas right now."
+  configurations:
+    -
+      sport: "NFL"
+      scored: true
+      picks_per_week: 5
+      spreads: true
+      allow_ties: true
+      number_of_intervals: 17
+      aggregate_winner: true

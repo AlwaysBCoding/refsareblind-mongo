@@ -13,6 +13,10 @@ Bundler.require(:default, Rails.env)
 
 module Refsareblind
   class Application < Rails::Application
+
+    # ADDED_CONFIGURATION_CONSTANTS
+    config.pool_bundles = YAML.load_file('config/pool_bundles.yml')
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

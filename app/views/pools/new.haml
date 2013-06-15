@@ -7,8 +7,11 @@
 
 = form_tag "/pools" do
 	%fieldset
+		= label_tag "Choose a name for your pool (Note: all names must be unique across the application)"
 		= text_field :pool, :name, placeholder: "Pool Name"
 	%fieldset
+		= label_tag "Choose from one of our premade classic pools or create your own fully custom pool"
+		= render "pools/new_pool_options"
 	%fieldset
 		= label_tag "This is the access code that members will need to join your pool"
 		= text_field :pool, :access_code, placeholder: "Access Code"

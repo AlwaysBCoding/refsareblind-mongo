@@ -66,6 +66,10 @@ private
 
 	def set_pool
 		@pool = Pool.find_by(slug: params[:id])
+		if !@pool.present?
+			flash[:notice] = "The pool you are attempting to access does not exist"
+			redirect_to user_account_url
+		end
 	end
 
 end
