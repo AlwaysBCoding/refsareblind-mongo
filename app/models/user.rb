@@ -49,11 +49,18 @@ class User
 # INSTANCE METHODS
 	def authorized_for_action_in_pool?(action, pool)
 		user_entry = self.entries.where(pool: pool).first
-		case action
-		when "approve-entry"
-			return true if ["owner", "admin"].include?(user_entry.role)
+		if user_entry.present?
+			case action
+			when "approve-entry"
+				return true if ["owner", "admin"].include?(user_entry.role)
+			when "access-admin-panel"
+				return true if ["owner", "admin"].include?(user_entry.role)
+			end
 		end
+	end
 
+	def has_entry_in_pool?(pool)
+		return true if self.entries.where(pool: pool).count > 0
 	end
 
 # PRIVATE METHODS

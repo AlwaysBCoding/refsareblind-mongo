@@ -1,0 +1,4 @@
+.pool-bundle-descriptions
+	- Rails.configuration.pool_bundles.each do |bundle|
+		.bundle-description.hidden{data: {name: bundle["data_name"]} }
+			%h1= bundle["description"]

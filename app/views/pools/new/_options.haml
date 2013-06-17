@@ -1,0 +1,26 @@
+.pool-bundle-options
+	= form_tag pools_url do
+		%fieldset.hidden
+			%input.pool-bundle-type{type: "hidden", name: "pool[bundle_type]"}
+		%fieldset
+			= label_tag "Choose a name for your pool (Note: all names must be unique across the application)"
+			= text_field :pool, :name, placeholder: "Pool Name"
+		%fieldset
+			= label_tag "Pool Permalink - The url where you will access your pool"
+			%span.pool-permalink.permalink-root= "http://www.refsareblind.com"
+			%span.pool-permalink.permalink-path= "/refs-are-blind"
+		%fieldset
+			= label_tag "Choose from one of our premade classic pools or create your own fully custom pool"
+			.new-pool-options
+				- Rails.configuration.pool_bundles.each do |bundle|
+					.pool-bundle{data: {name: bundle["data_name"]} }
+						%h1= bundle["display_name"]
+				.pool-bundle.roll-custom{data: {name: "roll-custom"}}
+					%h1 Create Custom NFL Pool
+				.custom-pool-options.hidden
+					= render "pools/new/custom_pool_options"
+		%fieldset
+			= label_tag "This is the access code that members will need to join your pool"
+			= text_field :pool, :access_code, placeholder: "Access Code"
+		%fieldset.actions
+			= submit_tag "Create Pool"

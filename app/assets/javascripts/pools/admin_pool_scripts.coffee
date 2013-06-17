@@ -6,7 +6,7 @@ $ ->
 				url: "/entries/approve"
 				method: "POST"
 				data:
-					entry_id: $(e.target).attr("data-entry-id")
+					entry_id: $(e.target).parents(".entry-row").attr("data-entry-id")
 				})
 			$(e.target).parents("tr").find("td.approval-mark").removeClass("unapproved").addClass("approved").text("✔")
 			$(e.target).parents("tr").find(".approve-entry").removeClass("approve-entry").addClass("remove-approval").text("Remove Approval")
@@ -15,7 +15,7 @@ $ ->
 				url: "/entries/remove_approval"
 				method: "POST"
 				data:
-					entry_id: $(e.target).attr("data-entry-id")
+					entry_id: $(e.target).parents(".entry-row").attr("data-entry-id")
 				})
 			$(e.target).parents("tr").find("td.approval-mark").removeClass("approved").addClass("unapproved").text("✘")
 			$(e.target).parents("tr").find(".remove-approval").removeClass("remove-approval").addClass("approve-entry").text("Approve Entry")

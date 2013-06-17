@@ -1,0 +1,23 @@
+%fieldset
+  = radio_button_tag "pool[configurations][sport]", "nfl"
+%fielset
+  = radio_button_tag "pool[configurations][league_type]", "scored", true
+  = radio_button_tag "pool[configurations][league_type]", "elimination"
+%fieldset
+  = label_tag "picks_per_week"
+  = text_field_tag "pool[configurations][picks_per_week]", "picks_per_week", placeholder: "Picks Per Week"
+%fieldset
+  = radio_button_tag "pool[configurations][spreads]", "true", true
+  = radio_button_tag "pool[configurations][spreads]", "false"
+%fieldset
+  = radio_button_tag "pool[configurations][same_team_limit]", "false", true
+  = radio_button_tag "pool[configurations][same_team_limit]", "1"
+%fieldset
+  = label_tag "number_of_intervals"
+  = text_field_tag "pool[configurations][number_of_intervals]", "number_of_intervals", placeholder: "Number of Intervals"
+%fiedlset
+  = radio_button_tag "pool[configurations][interval_winner]", "false", true
+  = radio_button_tag "pool[configurations][interval_winner]", "true"
+%fieldset
+  = radio_button_tag "pool[configurations][aggregate_winner]", "true", true
+  = radio_button_tag "pool[configurations][aggregate_winner]", "false"

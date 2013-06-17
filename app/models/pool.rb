@@ -12,7 +12,7 @@ class Pool
   field :configurations, type: Hash, default: {}
 
 # ASSOCIATIONS
-	has_many :entries
+	has_many :entries, dependent: :destroy
 
 # VALIDATIONS
 	validates :name, presence: true, uniqueness: true

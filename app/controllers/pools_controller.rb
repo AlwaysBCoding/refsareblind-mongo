@@ -1,11 +1,13 @@
 class PoolsController < AuthenticatedController
 	before_action :set_pool, except: [:index, :new, :create]
+	before_action :require_entry, only: [:show, :admin_dashboard]
 
 	def new
 	end
 
 	def create
 		pool = Pool.new pool_params
+		pool.configurations = set_pool_configurations(params[:pool])
 		if pool.save
 			Entry.create! user_id: @current_user.id, pool_id: pool.id, role: "owner", approved: true
 			flash[:notice] = "Your pool has successfully been created"
@@ -78,7 +80,7 @@ class PoolsController < AuthenticatedController
 
 private
 	def pool_params
-		params.require(:pool).permit(:name, :slug, :access_code, :owner)
+		params.require(:pool).permit(:name, :slug, :access_code, :owner, :configurations)
 	end
 
 	def set_pool
@@ -86,6 +88,23 @@ private
 		if !@pool.present?
 			flash[:notice] = "The pool you are attempting to access does not exist"
 			redirect_to user_account_url
+		end
+	end
+
+	def set_pool_configurations(pool_params)
+		case pool_params[:bundle_type]
+		when "nfl-survival"
+			return Rails.configuration.pool_bundles.select { |bundle| bundle["data_name"] == "nfl-survival" }.first["configurations"]
+		when "nfl-supercontest"
+			return Rails.configuration.pool_bundles.select { |bundle| bundle["data_name"] == "nfl-supercontest" }.first["configurations"]
+		when "roll-custom"
+			return pool_params["configurations"]
+		end
+	end
+
+	def require_entry
+		unless @current_user.has_entry_in_pool?(@pool)
+			redirect_to join_pool_url(@pool)
 		end
 	end
 

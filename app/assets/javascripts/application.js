@@ -5,6 +5,7 @@
 //= require underscore
 
 // POOL MANAGEMENT
+//= require pools/new_pool_scripts
 //= require pools/admin_pool_scripts
 
 // TURBOLINKS
