@@ -28,6 +28,7 @@ Refsareblind::Application.routes.draw do
 	resources :entries, only: [:create, :edit] do
 		post "approve", on: :collection
 		post "remove_approval", on: :collection
+		post "change_role", on: :collection
 	end
 
 # # # PICKS

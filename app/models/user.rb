@@ -51,9 +51,7 @@ class User
 		user_entry = self.entries.where(pool: pool).first
 		if user_entry.present?
 			case action
-			when "approve-entry"
-				return true if ["owner", "admin"].include?(user_entry.role)
-			when "access-admin-panel"
+			when "approve-entry", "access-admin-panel", "change-role"
 				return true if ["owner", "admin"].include?(user_entry.role)
 			end
 		end

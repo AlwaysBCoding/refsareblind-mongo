@@ -1,4 +1,5 @@
 .navigation
+	= link_to "Home", root_url
 	- if @current_user.present?
 		= link_to "Account", user_account_url
 		= link_to "Log Out", logout_url

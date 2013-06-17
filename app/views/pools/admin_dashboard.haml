@@ -11,14 +11,15 @@
 		- @pool.entries.each do |entry|
 			%tr.entry-row{data: {entry_id: entry.id.to_s}}
 				%td= entry
-				%td= entry.role.titleize
+				%td.role= entry.role
+				%td.role-select-list.hidden= select_tag "entry-role", options_for_select([["admin", "admin"], ["member", "member"]], entry.role)
 				- if entry.approved?
 					%td.approval-mark.approved.centered ✔
 					%td.centered= button_tag "Remove Approval", class: "remove-approval"
 				- else
 					%td.approval-mark.unapproved.centered ✘
 					%td.centered= button_tag "Approve Entry", class: "approve-entry"
-				%td.change-role
+				%td.change-role= button_tag "Change Role", class: "change-role"
 
 // STYLES ( COLLECT-LATER )
 :sass
