@@ -21,6 +21,9 @@ class NflPick
 # SCOPES
 
 # DELEGATIONS
+	def pool
+		self.entry.pool
+	end
 
 # CALLBACKS
 

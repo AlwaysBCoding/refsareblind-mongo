@@ -21,8 +21,8 @@ FactoryGirl.define do
 		end
 
 		factory :nfl_supercontest do
-			name "Refs Are Blind Supercontest"
-			slug "refs-are-blind-supercontest"
+			sequence(:name) { |n| "Refs Are Blind Supercontest#{n}" }
+			sequence(:slug) { |n| "refs-are-blind-supercontest#{n}" }
 			payment_settled true
 			access_code "access123"
 			# configurations {

@@ -3,4 +3,4 @@
 .entries
 - @pool.entries.each do |entry|
 	.entry
-		%p= "#{entry}"
+		%p= "#{entry} - #{entry.total_score(entry.nfl_picks)}"

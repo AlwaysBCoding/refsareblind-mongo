@@ -30,6 +30,7 @@ class NflMatchup
 # DELEGATIONS
 
 # CALLBACKS
+	after_save :notify_pick_scorer_if_matchup_is_final
 
 # CONFIG METHODS
 	def to_s
@@ -46,8 +47,30 @@ class NflMatchup
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def winning_team
+		if self.state == "final"
+			return home_team_id if home_team_score > away_team_score
+			return away_team_id if away_team_score > home_team_score
+			return "tie" if home_team_score == away_team_score
+		end
+	end
+
+	def winning_team_with_spread
+		if self.state == "final"
+			return home_team_id if home_team_score > away_team_score + point_spread
+			return away_team_id if away_team_score + point_spread > home_team_score
+			return "tie" if home_team_score == away_team_score + point_spread
+		else
+			return nil
+		end
+	end
 
 # PRIVATE METHODS
 private
+	def notify_pick_scorer_if_matchup_is_final
+		if self.state_changed? && self.state == "final"
+			nfl_picks.each { |pick| PickScorer.score_pick(pick) }
+		end
+	end
 
 end
