@@ -12,4 +12,13 @@ class PickScorer
 		end
 	end
 
+# DEBUG METHODS
+	def self.lock_picks
+		NflPick.where(locked: false).each { |pick| pick.update_attributes(locked: true) }
+	end
+
+	def self.finalize_matchups
+		NflMatchup.where(interval: CURRENT_NFL_WEEK).each { |matchup| matchup.update_attributes(state: "final") }
+	end
+
 end

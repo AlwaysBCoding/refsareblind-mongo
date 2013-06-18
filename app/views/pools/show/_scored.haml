@@ -1,0 +1,15 @@
+.entries
+	%table
+		%thead
+			%tr
+				%th Entry
+				%th Total Score
+				- CURRENT_NFL_WEEK.times do |n|
+					%th= "Week #{n+1}"
+		%tbody
+			- @pool.entries.each do |entry|
+				%tr.entry
+					%td= entry
+					%td= entry.total_score(entry.nfl_picks)
+					- CURRENT_NFL_WEEK.times do |n|
+						%td= entry.total_score(entry.interval_picks(n+1, true))

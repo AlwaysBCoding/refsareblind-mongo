@@ -43,8 +43,7 @@ class Entry
 	def interval_picks(interval, locked)
 		nfl_matchups = nfl_picks.where(locked: locked).pluck(:nfl_matchup_id)
 		nfl_matchups_in_interval = NflMatchup.where(interval: interval).find(nfl_matchups).map(&:id)
-		interval_picks =  nfl_picks.any_in(nfl_matchup_id: nfl_matchups_in_interval).pluck(:nfl_team_id)
-		return NflTeam.find(interval_picks)
+		return nfl_picks.any_in(nfl_matchup_id: nfl_matchups_in_interval)
 	end
 
 	def nfl_teams_used

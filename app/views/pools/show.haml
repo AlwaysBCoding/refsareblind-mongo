@@ -1,6 +1,6 @@
 %h1= @pool
 
-.entries
-- @pool.entries.each do |entry|
-	.entry
-		%p= "#{entry} - #{entry.total_score(entry.nfl_picks)}"
+- if @pool.elimination?
+	= render "pools/show/elimination"
+- elsif @pool.scored?
+	= render "pools/show/scored"

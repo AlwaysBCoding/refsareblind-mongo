@@ -23,7 +23,7 @@ Refsareblind::Application.routes.draw do
 			post "join" => "pools#post_join"
 		end
 	# PICKS
-		resources :picks, controller: "nfl_picks" do
+		resources :picks, controller: "nfl_picks", only: [:new, :create] do
 		end
 	end
 
@@ -33,10 +33,6 @@ Refsareblind::Application.routes.draw do
 		post "remove_approval", on: :collection
 		post "change_role", on: :collection
 	end
-
-# # # PICKS
-# #   get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_pick
-# #   post "/pools/:slug/picks/update_unlocked_survival_pick" => "nfl_picks#update_unlocked_survival_pick", as: :update_unlocked_survival_pick
 
 # DEBUG ROUTES - TURN OFF ON PRODUCTION
 	get "/view_sessions" => "dev#view_sessions"

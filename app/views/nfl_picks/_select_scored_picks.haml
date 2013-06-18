@@ -1,11 +1,14 @@
 .matchups
-	- @matchups.each do |matchup|
-		.matchup{data: {matchup_id: matchup.id}}
-			%p
-				%span.matchup-team.away-team{data: {team_id: matchup.away_team_id}}= matchup.away_team
+	= form_tag pool_picks_path do
+		- @matchups.each do |matchup|
+			%fieldset.matchup
+				= label_tag matchup.away_team
+				= radio_button_tag "matchups[#{matchup.id}]", matchup.away_team_id
 				%span.point-spread= point_spreadify(matchup.point_spread.to_f)
 				%span.at-symbol @
-				%span.matchup-team.home-team{data: {team_id: matchup.home_team_id}}= matchup.home_team
+				= label_tag matchup.home_team
+				= radio_button_tag "matchups[#{matchup.id}]", matchup.home_team_id
+		= submit_tag "Submit Picks"
 
 .my-picks
 	%table.picks-table{data: {total_picks: @current_entry.interval_picks(CURRENT_NFL_WEEK, false).count}}
@@ -21,6 +24,7 @@
 					%td.pick-number.centered= i+1
 					%td.pick
 
+// STYLES ( COLLECT-LATER )
 :sass
 	.matchups
 		width: 600px
