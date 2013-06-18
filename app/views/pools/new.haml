@@ -1,8 +1,8 @@
 %h1 CREATE A POOL
 
-- if @errors.present?
+- if flash[:errors].present?
 	.errors
-		- @errors.each do |error|
+		- flash[:errors].each do |error|
 			%li= error
 
 .new-pool-wizard

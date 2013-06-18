@@ -13,8 +13,8 @@ class PoolsController < AuthenticatedController
 			flash[:notice] = "Your pool has successfully been created"
 			redirect_to payment_pool_url(pool.slug)
 		else
-			@errors = pool.errors.full_messages
-			render :new
+			flash[:errors] = pool.errors.full_messages
+			redirect_to new_pool_url
 		end
 	end
 

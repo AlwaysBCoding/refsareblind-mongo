@@ -3,11 +3,13 @@
 	%head
 		%title Refs Are Blind
 		= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+		%script{src: "https://www.google.com/jsapi"}
 		= javascript_include_tag "application", "data-turbolinks-track" => true
 		= csrf_meta_tags
 	%body{class: "#{controller.controller_name}-#{controller.action_name}"}
 		%header
 			= render "shared/main_navigation"
 		- flash.each do |key, msg|
-			%div{class: "flash-message #{key}"}= msg
+			- if ["notice", "erorr"].include?(key)
+				%div{class: "flash-message #{key}"}= msg
 		= yield
