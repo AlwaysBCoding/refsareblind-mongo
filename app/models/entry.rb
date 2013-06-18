@@ -40,6 +40,10 @@ class Entry
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def nfl_teams_used
+		teams_used_ids = NflPick.where(entry_id: self.id, locked: true).pluck(:nfl_team_id)
+		return NflTeam.find(teams_used_ids)
+	end
 
 # PRIVATE METHODS
 private

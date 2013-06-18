@@ -34,6 +34,7 @@ class NflTeam
 
 # CONFIG METHODS
 	def to_s
+		"#{city.titleize} #{name.titleize}"
 	end
 
 	def to_param

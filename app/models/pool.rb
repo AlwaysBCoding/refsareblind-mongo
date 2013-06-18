@@ -21,8 +21,17 @@ class Pool
 
 # SPECIAL FEATURES
 
-# SCOPES
+# CLASS SCOPES
 	scope :open_to_public, -> { where(open_to_public: true) }
+
+# INSTANCE SCOPES
+	def elimination?
+		return true if self.configurations["elimination"] == true
+	end
+
+	def scored?
+		return true if self.configurations["scored"] == true
+	end
 
 # DELEGATIONS
 	def users

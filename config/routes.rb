@@ -22,6 +22,9 @@ Refsareblind::Application.routes.draw do
 			get "join"
 			post "join" => "pools#post_join"
 		end
+	# PICKS
+		resources :picks, controller: "nfl_picks" do
+		end
 	end
 
 # ENTRIES

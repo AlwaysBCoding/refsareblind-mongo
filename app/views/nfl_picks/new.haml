@@ -1,0 +1,9 @@
+%h1 Make your picks
+%h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
+
+- if @pool.elimination?
+	= render "nfl_picks/select_elimination_picks"
+- elsif @pool.scored?
+	= render "nfl_picks/select_scored_picks"
+- else
+	- raise "Pool does not have proper configuration options set"

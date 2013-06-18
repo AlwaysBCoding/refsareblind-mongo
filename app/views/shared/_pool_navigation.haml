@@ -1,0 +1,4 @@
+.pool-navigation
+	= link_to "#{@pool.name} Dashboard", pool_url(@pool.slug)
+	= link_to "Admin Panel", admin_pool_url(@pool.slug) if @current_user.authorized_for_action_in_pool?("access-admin-panel", @pool)
+	= link_to "Make Picks", new_pool_pick_url(@pool.slug)

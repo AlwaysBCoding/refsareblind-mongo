@@ -25,6 +25,8 @@ class NflMatchup
 		scope state, -> { where(state: state) }
 	end
 
+	scope :current_interval, -> { where(interval: CURRENT_NFL_WEEK) }
+
 # DELEGATIONS
 
 # CALLBACKS

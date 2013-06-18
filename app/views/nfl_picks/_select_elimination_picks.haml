@@ -1,0 +1,32 @@
+.matchups
+	- @matchups.each do |matchup|
+		.matchup{data: {matchup_id: matchup.id}}
+			%p
+				%span.matchup-team.away-team{class: ("locked" if !@available_teams.map(&:id).include?(matchup.away_team_id)), data: {team_id: matchup.away_team_id}}= matchup.away_team
+				%span.point-spread= point_spreadify(matchup.point_spread.to_f)
+				%span.at-symbol @
+				%span.matchup-team.home-team{class: ("locked" if !@available_teams.map(&:id).include?(matchup.home_team_id)),data: {team_id: matchup.home_team_id}}= matchup.home_team
+
+/ .my-pick
+/ 	= form_tag "/pools/#{@pool.slug}/picks/update_unlocked_survival_pick" do
+/ 		%h1 CURRENT PICK
+/ 		%h3.current-pick= @current_entry.nfl_survival_pick(CURRENT_NFL_WEEK) || "Choose a Team"
+/ 		= hidden_field_tag :nfl_team_id, @current_entry.nfl_survival_pick(CURRENT_NFL_WEEK).try(:id), class: "current-pick-team-id"
+/ 		= hidden_field_tag :nfl_matchup_id, @current_entry.nfl_survival_pick(CURRENT_NFL_WEEK).try(:nfl_matchup_id), class: "current-pick-matchup-id"
+
+/ 		= submit_tag "Update"
+
+// STYLES ( COLLECT-LATER )
+:sass
+	.matchups
+		width: 600px
+		position: absolute
+	.my-pick
+		width: 300px
+		position: absolute
+		right: 200px
+		.centered
+			text-align: center
+	.locked
+		background-color: gray
+		pointer-events: none
