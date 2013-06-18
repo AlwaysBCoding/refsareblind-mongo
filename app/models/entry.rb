@@ -40,6 +40,13 @@ class Entry
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def interval_picks(interval, locked)
+		nfl_matchups = NflPick.where(entry_id: self.id, locked: locked).pluck(:nfl_matchup_id)
+		nfl_matchups_in_interval = NflMatchup.where(interval: interval).find(nfl_matchups).map(&:id)
+		interval_picks =  NflPick.where(entry_id: self.id).any_in(nfl_matchup_id: nfl_matchups_in_interval).pluck(:nfl_team_id)
+		return NflTeam.find(interval_picks)
+	end
+
 	def nfl_teams_used
 		teams_used_ids = NflPick.where(entry_id: self.id, locked: true).pluck(:nfl_team_id)
 		return NflTeam.find(teams_used_ids)
